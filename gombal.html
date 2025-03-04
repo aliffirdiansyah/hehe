@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buat Dek Tiara 💕</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+        }
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #gombalButton {
+            padding: 15px 30px;
+            font-size: 20px;
+            font-weight: 600;
+            background-color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+        #gombalButton:hover {
+            background-color: #ffebf0;
+        }
+        #lyrics {
+            margin-top: 20px;
+            font-size: 24px;
+            color: white;
+            white-space: pre-line;
+            overflow: hidden;
+            text-align: center;
+            font-weight: 300;
+        }
+        .typing {
+            display: inline-block;
+            border-right: 2px solid white;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 2s steps(40, end) forwards, blink-caret 0.75s step-end infinite;
+            font-size: 28px;
+            font-weight: 400;
+            font-style: italic;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: white; }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <button id="gombalButton">Klik Aku Dek Tiara Sayanggg 💖</button>
+        <div id="lyrics"></div>
+        <audio id="song" src="lagu.mp3"></audio>
+    </div>
+    
+    <script>
+        document.getElementById("gombalButton").addEventListener("click", function() {
+            let lyrics = [
+                "Gedene cintaku luar biasa",
+                "Jelas paling tulus sak dunia",
+                "Walau kadang gawe ati kelaran",
+                "Apa wae tak tabrak yang menjadi penghalang",
+                "Tresna tekan matiku mung sampeyan",
+                "Ra ana muntire lehku berjuang",
+                "Kudu dadi siji ora urusan",
+                "Sampai pada tujuan",
+                "Tuhan mohon ijinkan"
+            ];
+            
+            let lyricsContainer = document.getElementById("lyrics");
+            let song = document.getElementById("song");
+            let index = 0;
+            
+            this.style.display = "none";
+            song.play();
+            
+            function showNextLine() {
+                if (index < lyrics.length) {
+                    let line = document.createElement("p");
+                    line.classList.add("typing");
+                    lyricsContainer.appendChild(line);
+                    
+                    let text = lyrics[index];
+                    let charIndex = 0;
+                    function typeEffect() {
+                        if (charIndex < text.length) {
+                            line.textContent += text[charIndex];
+                            charIndex++;
+                            setTimeout(typeEffect, 100);
+                        } else {
+                            index++;
+                            setTimeout(showNextLine, 1000);
+                        }
+                    }
+                    typeEffect();
+                }
+            }
+            
+            showNextLine();
+        });
+    </script>
+</body>
+</html>
