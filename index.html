@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buat Dek Tiara 💕</title>
+    <title>GombalTime 💕</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
         
@@ -42,25 +42,32 @@
             margin-top: 20px;
             font-size: 24px;
             color: white;
-            white-space: pre-line;
-            overflow: hidden;
             text-align: center;
             font-weight: 300;
             max-width: 100%;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            white-space: normal;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .typing {
-            display: inline-block;
+            display: block;
             border-right: 2px solid white;
-            white-space: nowrap;
             overflow: hidden;
-            animation: typing 2s steps(40, end) forwards, blink-caret 0.75s step-end infinite;
+            visibility: hidden;
+            max-width: 100%;
+            word-wrap: break-word;
+            white-space: normal;
             font-size: 28px;
             font-weight: 400;
             font-style: italic;
+            animation: typing 2s steps(40, end) forwards, blink-caret 0.75s step-end infinite;
         }
         @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
+            from { width: 0; visibility: visible; }
+            to { width: 100%; visibility: visible; }
         }
         @keyframes blink-caret {
             from, to { border-color: transparent; }
@@ -104,6 +111,7 @@
             let lyricsContainer = document.getElementById("lyrics");
             let song = document.getElementById("song");
             let index = 0;
+            let interval = 1.73 * 1000; // Interval sesuai BPM 139
             
             this.style.display = "none";
             song.play();
@@ -122,8 +130,9 @@
                             charIndex++;
                             setTimeout(typeEffect, 100);
                         } else {
+                            line.style.visibility = "visible";
                             index++;
-                            setTimeout(showNextLine, 1000);
+                            setTimeout(showNextLine, interval);
                         }
                     }
                     typeEffect();
